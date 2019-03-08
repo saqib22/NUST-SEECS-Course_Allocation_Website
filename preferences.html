@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Information For Allocation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="preferences.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="form">
+		<div class="container-fluid" style="background-color: white;">
+			<img src="logo.png" class="img-responsive">
+			<h3 class="title">Set Your Preferences</h3>
+			<div class="row">
+				<div class="col-md-3 desc">
+					<h5>Season :</h5>
+				</div>
+				<div class="col-md-6">
+					<select class="combo" id="season">
+						<option disabled selected id="placeholder">--Select the time of year</option>
+						<option value="spring">Spring</option>
+						<option value="fall">Fall</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 desc">
+					<h5>Degree :</h5>
+				</div>
+				<div class="col-md-6">
+					<select class="combo" id="degree" onchange="setDegree()">
+						<option disabled selected id="placeholder">--Select Degree program</option>
+						<option value="cs" >BSCS</option>
+						<option value="se" >BESE</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 desc">
+					<h5>Courses :</h5>
+				</div>
+				<div class="col-md-6">
+					<select class="combo">
+						<option disabled selected id="placeholder">--Check Courses offered</option>
+						<option disabled>Advanced Topics In Computing</option>
+						<option disabled>Computer Forensics</option>
+						<option disabled>Web Engineering</option>
+						<option disabled>Computer Architecture and Organization</option>
+						<option disabled>Design and Analysis of Alogirthms</option>
+						<option disabled>Human Computer Interaction</option>
+						<option disabled>Artificial Intelligence</option>
+						<option disabled>Machine Learning</option>
+						<option disabled>Community Service Learning</option>
+						<option disabled>Principles of Sociology</option>
+						<option disabled>Psychology</option>
+						<option disabled>Digital Image Processing</option>
+					</select>
+				</div>
+				<div class="col-md-3 alter" style=" text-align: center;">
+					<button class="btn-primary addC"><i class="fa fa-plus-circle"></i>Add</button>
+					<button class="btn-danger delC"><i class="fa fa-minus-circle"></i>Del</button>
+				</div>
+			</div>
+			
+			<div class="row addCourse" style="display: none;">
+				<form action="addCourse.php" method="get">
+					<div class="row">
+						<div class="col-md-3 desc">
+							<h5>Course Code</h5>
+						</div>
+						<div class="col-md-6">
+							<input type="text" name="code" class="combo">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3 desc">
+							<h5>Name of Course</h5>
+						</div>
+						<div class="col-md-6">
+							<input type="text" name="name" class="combo">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 desc">
+							<h5>Degree</h5>
+						</div>
+						<div class="col-md-6">
+							BSCS<input type="radio" name="deg" value="BSCS">
+  							BESE<input type="radio" name="deg" value="BESE"><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 desc">
+							<h5>Semester</h5>
+						</div>
+						<div class="col-md-6">
+							<input type="number" min="1" max="8" name="semester" value="1" placeholder="Preferences">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 desc">
+							<h5>Credit Hours</h5>
+						</div>
+						<div class="col-md-6">
+							<input type="number" min="2" max="4" name="credits" value="2" placeholder="Preferences">
+						</div>
+					</div>
+					<input type="submit" name="addCoursetoDB">
+				</form>
+			</div>
+
+			<div class="row delCourse" style="display: none;">
+				<form action="deleteCourse.php">
+					<div class="row">
+						<div class="col-md-3 desc">
+							<h5>Name of Course</h5>
+						</div>
+						<div class="col-md-6">
+							<input type="text" name="course_name" class="combo">
+						</div>
+					</div>
+					<div class="row">
+							<div class="col-md-3 desc">
+								<h5>Degree</h5>
+							</div>
+							<div class="col-md-6">
+								BSCS<input type="radio" name="removing_degree" value="cs">
+	  							BESE<input type="radio" name="removing_degree" value="se"><br>
+							</div>
+						</div>
+						<input type="submit" name="deleteThisCourse">
+				</form>
+			</div>
+
+
+			
+
+			<div class="row">
+				<div class="col-md-3 desc">
+					<h5>Instructors :</h5>
+				</div>
+				<div class="col-md-6">
+					<select class="combo">
+						<option disabled selected id="placeholder">--Check Instructors</option>
+						<option disabled>Dr. Asad Ali Shah</option>
+						<option disabled>Ms. Haleemah Zia</option>
+						<option disabled>Engr. Dr. Omar Arif</option>
+						<option disabled>Dr. Arslan</option>
+						<option disabled>Dr. Anis ur Rehman</option>
+						<option disabled>Dr. Mehdi Hussain</option>
+						<option disabled>Engr. Dr. Muhammad Ali Tahir</option>
+						<option disabled>Engr. Mr. Taufeeq ur Rehman</option>
+						<option disabled>Dr. Asad W. Malik</option>
+					</select>
+				</div>
+				<div class="col-md-3 alter" style= "text-align: center;">
+					<button class="btn-primary addI"><i class="fa fa-plus-circle"></i>Add</button>
+					<button class="btn-danger delI"><i class="fa fa-minus-circle"></i>Del</button>
+
+				</div>
+			</div>
+
+			<div class="row addIns" style="display: none;">
+				<div class="row">
+					<div class="col-md-3 desc">
+						<h5>Name of Instructor</h5>
+					</div>
+					<div class="col-md-6">
+						<input type="text" name="name" class="combo">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 desc">
+						<h5>Preferences</h5>
+					</div>
+					<div class="col-md-6">
+						<input type="text" name="name" class="combo">
+					</div>
+				</div>
+			</div>
+
+			<div class="row delIns" style="display: none;">
+				<div class="row">
+					<div class="col-md-3 desc">
+						<h5>Name of Instructor</h5>
+					</div>
+					<div class="col-md-6">
+						<input type="text" name="name" class="combo">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-3 desc">
+					
+				</div>
+				
+			</div>
+
+			<div class="row submit" style="text-align: center;">
+				<button onclick="ongenerate()" class="btn-primary">Generate <i class="fa fa-arrow-right"></i></button>
+			</div>
+		</div>
+	</div>
+
+	
+
+
+
+
+
+    <script src="javascript.js"></script>
+
+</body>
+</html>
